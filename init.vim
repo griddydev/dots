@@ -152,38 +152,39 @@ set shiftwidth=4
 set title
 set titlestring=%F
 
-" --- Minimal Neovim Setup for Terminal Colors ---
+"highlight clear
 "
-"
-"" Reset all previous highlight settings
-highlight clear
-
-" Load Neovim's internal 'vim' colorscheme. 
-" This is the most basic scheme that relies on terminal's 16 colors.
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_improved_warnings = 1
-let g:srcery_bold = 1
-let g:srcery_italic = 0
-let g:srcery_undercurl = 0
-let g:srcery_inverse = 0
+"let g:gruvbox_improved_warnings = 1
+"let g:srcery_bold = 1
+"let g:srcery_italic = 0
+"let g:srcery_undercurl = 0
+"let g:srcery_inverse = 0
 colorscheme gruvbox
-
-" (Optional but recommended) Ensure syntax highlighting is enabled.
-syntax enable
-
-" Part 2: Force Transparent Backgrounds (Crucial Fix)
-" This tells Neovim to use the underlying terminal's background (from foot.ini)
-hi Normal ctermbg=NONE guibg=#1d2021
-hi Comment gui=italic cterm=italic
-hi CursorLineNr guifg=#fabd2f guibg=#3c3836
-highlight NonText ctermbg=none
-highlight EndOfBuffer ctermbg=none
-highlight LineNr ctermbg=none
-highlight SignColumn ctermbg=none
+"
+"syntax enable
+"
+"hi Normal ctermbg=NONE guibg=#1d2021
+"hi Comment gui=italic cterm=italic
+"hi CursorLineNr guifg=#fabd2f guibg=#3c3836
+"highlight NonText ctermbg=none
+"highlight EndOfBuffer ctermbg=none
+"highlight LineNr ctermbg=none
+"highlight SignColumn ctermbg=none
 
 set cursorline
+set laststatus=0
+set cmdheight=0
+set number relativenumber
+set mouse=a
+set nocompatible
+set hidden
+set ignorecase smartcase
+set incsearch hlsearch
+set scrolloff=5
+
 
 au BufRead,BufNewFile *.pory set filetype=pory
 
