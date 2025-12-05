@@ -173,8 +173,37 @@ colorscheme gruvbox
 "highlight EndOfBuffer ctermbg=none
 "highlight LineNr ctermbg=none
 "highlight SignColumn ctermbg=none
+"
+"
 
-set cursorline
+
+" --- CursorLine Management ---
+
+augroup ActiveCursorLine
+  autocmd!
+
+  " A. Split-Window Logic (setlocal)
+  " Turn ON cursorline in the window you ENTER (only for that window)
+  autocmd WinEnter * setlocal cursorline
+
+  " Turn OFF cursorline in the window you LEAVE (only for that window)
+  autocmd WinLeave * setlocal nocursorline
+
+  " B. External Focus Logic (set)
+  " When Neovim loses OS focus, turn OFF cursorline globally for this instance.
+  " This is crucial for external terminal switching.
+  autocmd FocusLost * set nocursorline
+
+  " When Neovim gains OS focus, turn ON cursorline globally,
+  " which immediately activates the cursorline in the *current* active split.
+  autocmd FocusGained * set cursorline
+
+  " C. Initial Setup
+  " Ensure the first window starts correctly
+  autocmd VimEnter * setlocal cursorline
+augroup END
+
+"set cursorline
 set laststatus=0
 set cmdheight=0
 set number relativenumber
