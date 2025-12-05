@@ -182,7 +182,7 @@ set mouse=a
 set nocompatible
 set hidden
 set ignorecase smartcase
-set incsearch hlsearch
+"set incsearch hlsearch
 set scrolloff=5
 
 
