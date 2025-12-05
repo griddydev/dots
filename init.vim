@@ -185,6 +185,49 @@ set ignorecase smartcase
 "set incsearch hlsearch
 set scrolloff=5
 
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" 1. Define a function to execute the chained commands
+function! SplitTerm()
+    split
+    terminal
+endfunction
+
+" 2. Override the :terminal command to call the function
+" (This should now work without the invalid -override flag)
+command! Term call SplitTerm()
+
+" 3. Map the lowercase command to your new capitalized command
+" cnoreabbrev = Command-line Non-recursive Abbreviation
+" This lets you type :term and Neovim executes :Term
+cnoreabbrev term Term
+
+" Set Neovim to start the terminal in Terminal mode (like Vim's default).
+" The command will execute 'i' (insert) right after starting the terminal buffer.
+"autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd TermOpen * startinsert
+
+" T-Noremap (Terminal Non-Recursive Remap)
+" This maps the split navigation keys to work inside the terminal.
+
+" Switch to the split on the left (h)
+tnoremap <C-h> <C-\><C-N><C-w>h
+
+" Switch to the split below (j)
+tnoremap <C-j> <C-\><C-N><C-w>j
+
+" Switch to the split above (k)
+tnoremap <C-k> <C-\><C-N><C-w>k
+
+" Switch to the split on the right (l)
+tnoremap <C-l> <C-\><C-N><C-w>l
+
+autocmd BufEnter term://* startinsert
+
 
 au BufRead,BufNewFile *.pory set filetype=pory
 
