@@ -1,8 +1,4 @@
-" The default vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2019 Oct 27
-"
+
 " This is loaded if no vimrc file was found.
 " Except when Vim is run with "-u NONE" or "-C".
 " Individual settings can be reverted with ":set option&".
@@ -152,29 +148,12 @@ set shiftwidth=4
 set title
 set titlestring=%F
 
-"highlight clear
-"
+" colorscheme
 set background=dark
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
-"let g:gruvbox_improved_warnings = 1
-"let g:srcery_bold = 1
-"let g:srcery_italic = 0
-"let g:srcery_undercurl = 0
-"let g:srcery_inverse = 0
 colorscheme gruvbox
-"
-"syntax enable
-"
-"hi Normal ctermbg=NONE guibg=#1d2021
-"hi Comment gui=italic cterm=italic
-"hi CursorLineNr guifg=#fabd2f guibg=#3c3836
-"highlight NonText ctermbg=none
-"highlight EndOfBuffer ctermbg=none
-"highlight LineNr ctermbg=none
-"highlight SignColumn ctermbg=none
-"
-"
+
 
 
 " --- CursorLine Management ---
@@ -240,7 +219,6 @@ cnoreabbrev term Term
 "autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd TermOpen * startinsert
 
-" T-Noremap (Terminal Non-Recursive Remap)
 " This maps the split navigation keys to work inside the terminal.
 
 " Switch to the split on the left (h)
@@ -255,11 +233,17 @@ tnoremap <C-k> <C-\><C-N><C-w>k
 " Switch to the split on the right (l)
 tnoremap <C-l> <C-\><C-N><C-w>l
 
+" terminal enters on insert mode
 autocmd BufEnter term://* startinsert
 
+" yank from default clipboard
+set clipboard=unnamedplus
 
+" disable right clicl menu
+set mousemodel=extend
+
+" Poryscript syntax 
 au BufRead,BufNewFile *.pory set filetype=pory
-
 au FileType pory setlocal cindent
 
 
