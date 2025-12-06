@@ -257,6 +257,7 @@ tnoremap <C-l> <C-\><C-N><C-w>l
 
 autocmd BufEnter term://* startinsert
 
+set clipboard=unnamedplus
 
 au BufRead,BufNewFile *.pory set filetype=pory
 
