@@ -1,3 +1,6 @@
+lua << EOF
+package.path = package.path .. ';/home/qwe/.local/share/nvim/site/pack/manual/start/nvim-treesitter/lua/?.lua'
+EOF
 
 " This is loaded if no vimrc file was found.
 " Except when Vim is run with "-u NONE" or "-C".
@@ -149,9 +152,9 @@ set title
 set titlestring=%F
 
 " colorscheme
-set background=dark
+set background=light
 set termguicolors
-let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
 colorscheme gruvbox
 
 
@@ -185,7 +188,7 @@ augroup END
 "set cursorline
 set laststatus=0
 set cmdheight=0
-set number relativenumber
+"set number relativenumber
 set mouse=a
 set nocompatible
 set hidden
@@ -246,6 +249,27 @@ set mousemodel=extend
 au BufRead,BufNewFile *.pory set filetype=pory
 au FileType pory setlocal cindent
 
+packloadall
 
+lua << EOF
+require'nvim-treesitter'.setup {
+	ensure_installed = { },
 
+	highlight = {
+		enable = true,
+	},
+
+	indent = {
+		enable = true
+	}
+}
+
+-- Force Treesitter to start for C files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "c",
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+EOF
 
